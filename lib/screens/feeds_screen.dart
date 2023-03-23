@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:ms_ecommerce_app/models%20&%20providers/cart.dart';
@@ -11,7 +13,7 @@ import 'cart/cart_screen.dart';
 class FeedsScreen extends StatefulWidget {
   static const routeName = '/Feeds-screen';
 
-  FeedsScreen({Key? key}) : super(key: key);
+  const FeedsScreen({Key? key}) : super(key: key);
 
   @override
   State<FeedsScreen> createState() => _FeedsScreenState();

@@ -1,7 +1,12 @@
+// ignore_for_file: avoid_print
+
 import 'package:backdrop/backdrop.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
+import 'package:ms_ecommerce_app/core/helpers/logger.dart';
 import 'package:ms_ecommerce_app/models%20&%20providers/product.dart';
 import 'package:ms_ecommerce_app/models%20&%20providers/wishlist.dart';
 import 'package:ms_ecommerce_app/screens/feeds_screen.dart';
@@ -12,6 +17,8 @@ import 'package:ms_ecommerce_app/widgets/back_layer.dart';
 import 'package:ms_ecommerce_app/widgets/category.dart';
 import 'package:ms_ecommerce_app/widgets/popular_propducts.dart';
 import 'package:provider/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/Home-screen';
@@ -44,12 +51,46 @@ class _HomeScreenState extends State<HomeScreen> {
     Future.microtask(() {
       productProvider.fetchProducts();
       productProvider.popularProducts;
+      _getUserData();
     });
+  }
+
+  String _userImageUrl = "";
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void _getUserData() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    var data = preferences.getString("image_url") ?? '';
+    User? user = _auth.currentUser;
+    Logger.clap(';asldjf;lksdfj', preferences.getString("image_url"));
+    // String uid = "";
+    if (user!.isAnonymous) {
+      return;
+    } else {
+      // final DocumentSnapshot userDocs =
+      //     await FirebaseFirestore.instance.collection('users').doc(uid).get();
+      setState(() {
+        // _userImageUrl = user.photoURL!.isEmpty
+        //     ? "https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg"
+        //     : user.photoURL ?? '';
+        if (data.isNotEmpty) {
+          preferences.setString('image_url', user.photoURL ?? '');
+          _userImageUrl = preferences.getString('image_url') ?? '';
+        }
+      });
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant HomeScreen oldWidget) {
+    _getUserData();
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
   Widget build(BuildContext context) {
     // final productData = Provider.of<ProductProvider>(context);
+
     final popularProduct = productProvider.popularProducts;
     print('Product list ${popularProduct.length}');
     productProvider.fetchProducts();
@@ -84,12 +125,37 @@ class _HomeScreenState extends State<HomeScreen> {
             }),
             IconButton(
               onPressed: () {},
-              icon: const CircleAvatar(
+              icon: CircleAvatar(
                 backgroundColor: Colors.white,
-                child: CircleAvatar(
+                child:
+                    // CircleAvatar(
+                    //   radius: 14,
+                    //   backgroundImage:
+                    //   NetworkImage(
+                    //     _userImageUrl,
+                    //   ),
+
+                    // ),
+                    CircleAvatar(
                   radius: 14,
-                  backgroundImage: NetworkImage(
-                    'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg',
+                  child: CachedNetworkImage(
+                    imageUrl: _userImageUrl,
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        color: Colors.amber,
+                        borderRadius: BorderRadius.circular(50),
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                          // colorFilter: const ColorFilter.mode(
+                          //     Colors.red, BlendMode.colorBurn),
+                        ),
+                      ),
+                    ),
+                    placeholder: (context, url) =>
+                        const CircularProgressIndicator(),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                 ),
               ),

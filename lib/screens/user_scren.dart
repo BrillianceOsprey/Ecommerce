@@ -2,6 +2,7 @@
 
 import 'dart:io';
 import 'package:badges/badges.dart' as badges;
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -79,9 +80,29 @@ class _UserScreenState extends State<UserScreen> {
                   top = cons.biggest.height;
                   return FlexibleSpaceBar(
                     centerTitle: true,
-                    background: Image.network(
-                      _userImageUrl,
-                      fit: BoxFit.cover,
+                    background:
+                        // Image.network(
+                        //   _userImageUrl,
+                        //   fit: BoxFit.cover,
+                        // ),
+                        CachedNetworkImage(
+                      imageUrl: _userImageUrl,
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          color: Colors.amber,
+                          borderRadius: BorderRadius.circular(50),
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                            // colorFilter: const ColorFilter.mode(
+                            //     Colors.red, BlendMode.colorBurn),
+                          ),
+                        ),
+                      ),
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
                     title: AnimatedOpacity(
                       duration: const Duration(milliseconds: 300),

@@ -127,12 +127,12 @@ class FullCartState extends State<FullCart> {
                       ],
                     ),
                     Row(
-                      children: [
-                        const Text(
+                      children: const [
+                        Text(
                           'Shipping : ',
                           style: TextStyle(fontSize: 16),
                         ),
-                        const Flexible(
+                        Flexible(
                           child: Text(
                             '\$450.00',
                             overflow: TextOverflow.ellipsis,

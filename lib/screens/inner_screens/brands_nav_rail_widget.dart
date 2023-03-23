@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:ms_ecommerce_app/screens/inner_screens/product_details_screen.dart';
 import 'package:provider/provider.dart';

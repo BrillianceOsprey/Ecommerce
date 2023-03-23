@@ -40,6 +40,7 @@ dependencies:
   http: ^0.13.5
   image_picker: ^0.8.7
   flutter_swiper_null_safety: ^1.0.2
+  cached_network_image: ^3.2.3
   
 dev_dependencies:
   flutter_test:

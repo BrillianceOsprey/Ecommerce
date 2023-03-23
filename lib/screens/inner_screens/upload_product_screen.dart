@@ -322,25 +322,23 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(right: 9),
-                          child: Container(
-                            child: TextFormField(
-                              controller: _brandContrroller,
+                          child: TextFormField(
+                            controller: _brandContrroller,
 
-                              key: const ValueKey('Brand'),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'Brand is missed';
-                                }
-                                return null;
-                              },
-                              //keyboardType: TextInputType.emailAddress,
-                              decoration: const InputDecoration(
-                                labelText: 'Brand',
-                              ),
-                              onSaved: (value) {
-                                _productBrand = value.toString();
-                              },
+                            key: const ValueKey('Brand'),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Brand is missed';
+                              }
+                              return null;
+                            },
+                            //keyboardType: TextInputType.emailAddress,
+                            decoration: const InputDecoration(
+                              labelText: 'Brand',
                             ),
+                            onSaved: (value) {
+                              _productBrand = value.toString();
+                            },
                           ),
                         ),
                       ),
