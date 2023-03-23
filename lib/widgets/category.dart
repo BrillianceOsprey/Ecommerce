@@ -1,80 +1,93 @@
 import 'package:flutter/material.dart';
+import 'package:ms_ecommerce_app/screens/inner_screens/categories_feed_screen.dart';
 
-class CategoryWidget extends StatefulWidget {
-  final int index;
-  const CategoryWidget({Key? key, required this.index}) : super(key: key);
+class Category extends StatefulWidget {
+  final int i;
+
+  const Category({
+    required this.i,
+    Key? key,
+  }) : super(key: key);
 
   @override
-  State<CategoryWidget> createState() => _CategoryWidgetState();
+  State<Category> createState() => _CategoryState();
 }
 
-class _CategoryWidgetState extends State<CategoryWidget> {
-  List<Map<String, Object>> categories = [
+class _CategoryState extends State<Category> {
+  final List<Map<String, Object>> _categories = [
     {
-      'categoryName': 'Phones',
-      'categoryImagesPath': 'assets/images/CatPhones.png',
+      'catName': 'Phones',
+      'catImage': 'assets/images/CatPhones.png',
     },
     {
-      'categoryName': 'Clothes',
-      'categoryImagesPath': 'assets/images/CatClothes.jpg',
+      'catName': 'Laptops',
+      'catImage': 'assets/images/CatLaptops.png',
     },
     {
-      'categoryName': 'Shoes',
-      'categoryImagesPath': 'assets/images/CatShoes.jpg',
+      'catName': 'Clothes',
+      'catImage': 'assets/images/CatClothes.jpeg',
     },
     {
-      'categoryName': 'Beauty&Health',
-      'categoryImagesPath': 'assets/images/CatBeauty.jpg',
+      'catName': 'Shoes',
+      'catImage': 'assets/images/CatShoes.jpeg',
     },
     {
-      'categoryName': 'Laptops',
-      'categoryImagesPath': 'assets/images/CatLaptops.png',
+      'catName': 'Watches',
+      'catImage': 'assets/images/CatWatches.jpeg',
     },
     {
-      'categoryName': 'Furniture',
-      'categoryImagesPath': 'assets/images/CatFurniture.jpg',
+      'catName': 'Furniture',
+      'catImage': 'assets/images/CatFurniture.jpeg',
     },
     {
-      'categoryName': 'Watches',
-      'categoryImagesPath': 'assets/images/CatWatches.jpg',
+      'catName': 'Health',
+      'catImage': 'assets/images/CatBeauty.jpeg',
     },
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-                image: AssetImage(
-                    categories[widget.index]['categoryImagesPath'].toString()),
-                fit: BoxFit.cover),
-          ),
-          margin: const EdgeInsets.symmetric(horizontal: 10),
-          width: 150,
-          height: 150,
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).pushNamed(
+          CategoriesFeedScreen.routeName,
+          arguments: _categories[widget.i]['catName'],
+        );
+        // print('${_categories[widget.i]['catName']}');
+      },
+      child: Container(
+        height: 200,
+        width: 150,
+        decoration: BoxDecoration(
+          border: Border.all(
+              width: 2, color: Theme.of(context).colorScheme.onBackground),
+          borderRadius: BorderRadius.circular(12),
         ),
-        Positioned(
-          bottom: 0,
-          left: 10,
-          right: 10,
-          child: Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            color: Colors.white,
-            child: Text(
-              categories[widget.index]['categoryName'].toString(),
-              style: const TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 18,
-                color: Colors.grey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 150,
+              width: 150,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                ),
+                child: Image.asset(
+                  (_categories[widget.i]['catImage']).toString(),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-        )
-      ],
+            const SizedBox(height: 10),
+            Text(
+              ' ${(_categories[widget.i]['catName']).toString()}',
+              style: const TextStyle(fontSize: 20),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

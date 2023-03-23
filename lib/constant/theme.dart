@@ -5,14 +5,9 @@ class Styles {
     return ThemeData(
       scaffoldBackgroundColor:
           isDarkTheme ? Colors.black : Colors.grey.shade300,
-      primarySwatch: Colors.purple,
       primaryColor: isDarkTheme ? Colors.black : Colors.grey.shade300,
-      accentColor: Colors.deepPurple,
-      backgroundColor: isDarkTheme ? Colors.grey.shade700 : Colors.white,
       indicatorColor:
           isDarkTheme ? const Color(0xff0E1D36) : const Color(0xffCBDCF8),
-      buttonColor:
-          isDarkTheme ? const Color(0xff3B3B3B) : const Color(0xffF1F5FB),
       hintColor: isDarkTheme ? Colors.grey.shade300 : Colors.grey.shade800,
       highlightColor:
           isDarkTheme ? const Color(0xff372901) : const Color(0xffFCE192),
@@ -32,6 +27,10 @@ class Styles {
       appBarTheme: const AppBarTheme(
         elevation: 0.0,
       ),
+      colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
+          .copyWith(
+              background: isDarkTheme ? Colors.grey.shade700 : Colors.white)
+          .copyWith(secondary: Colors.deepPurple),
     );
   }
 }
