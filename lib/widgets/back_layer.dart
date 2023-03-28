@@ -44,18 +44,18 @@ class BackLayer extends StatelessWidget {
                         .pushNamed(UploadProductScreen.routeName);
                   },
                 ),
-                // _backLayerButton(
-                //   title: 'Upload local Products',
-                //   icon: Icons.upload,
-                //   onPressed: () {
-                //     // Navigator.of(context)
-                //     //     .pushNamed(UploadProductScreen.routeName);
-                //     Navigator.of(context)
-                //         .push(MaterialPageRoute(builder: (cxt) {
-                //       return const LocalProductUpload();
-                //     }));
-                //   },
-                // ),
+                _backLayerButton(
+                  title: 'Upload local Products',
+                  icon: Icons.upload,
+                  onPressed: () {
+                    // Navigator.of(context)
+                    //     .pushNamed(UploadProductScreen.routeName);
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (cxt) {
+                      return const LocalProductUpload();
+                    }));
+                  },
+                ),
               ],
             ),
           ),

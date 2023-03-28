@@ -35,7 +35,7 @@ class PopularProducts extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).pushNamed(
                         ProductDetailsScreen.routeName,
-                        arguments: productAttrribute.id,
+                        arguments: productAttrribute.productId,
                       );
                     },
                     child: ClipRRect(
@@ -44,7 +44,7 @@ class PopularProducts extends StatelessWidget {
                         topRight: Radius.circular(12),
                       ),
                       child: Image.network(
-                        productAttrribute.imageUrl,
+                        productAttrribute.productImage,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -57,13 +57,14 @@ class PopularProducts extends StatelessWidget {
                     child: IconButton(
                       onPressed: () {
                         wp.addOrRemoveFromWishlist(
-                          productAttrribute.id,
-                          productAttrribute.title,
-                          productAttrribute.imageUrl,
-                          productAttrribute.price,
+                          productAttrribute.productId,
+                          productAttrribute.productTitle,
+                          productAttrribute.productImage,
+                          productAttrribute.productPrice,
                         );
                       },
-                      icon: wp.wishlistList.containsKey(productAttrribute.id)
+                      icon: wp.wishlistList
+                              .containsKey(productAttrribute.productId)
                           ? const Icon(Icons.favorite, color: Colors.red)
                           : const Icon(
                               Icons.favorite,
@@ -79,7 +80,7 @@ class PopularProducts extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: Text(
-                        '\$ ${productAttrribute.price}',
+                        '\$ ${productAttrribute.productPrice}',
                         style: const TextStyle(fontSize: 16),
                       ),
                     ),
@@ -91,7 +92,7 @@ class PopularProducts extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                ' ${productAttrribute.title}',
+                ' ${productAttrribute.productTitle}',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(fontSize: 20),
@@ -105,28 +106,28 @@ class PopularProducts extends StatelessWidget {
                 children: [
                   Flexible(
                     child: Text(
-                      ' ${productAttrribute.description} ',
+                      ' ${productAttrribute.productDescription} ',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(fontSize: 18),
                     ),
                   ),
                   InkWell(
-                    onTap:
-                        cartProvider.cartList.containsKey(productAttrribute.id)
-                            ? () {}
-                            : () {
-                                cartProvider.addToCart(
-                                  productAttrribute.id,
-                                  productAttrribute.title,
-                                  productAttrribute.imageUrl,
-                                  productAttrribute.price,
-                                );
-                              },
-                    child:
-                        cartProvider.cartList.containsKey(productAttrribute.id)
-                            ? const Icon(Icons.check)
-                            : const Icon(Icons.add_shopping_cart),
+                    onTap: cartProvider.cartList
+                            .containsKey(productAttrribute.productId)
+                        ? () {}
+                        : () {
+                            cartProvider.addToCart(
+                              productAttrribute.productId,
+                              productAttrribute.productTitle,
+                              productAttrribute.productImage,
+                              productAttrribute.productPrice,
+                            );
+                          },
+                    child: cartProvider.cartList
+                            .containsKey(productAttrribute.productId)
+                        ? const Icon(Icons.check)
+                        : const Icon(Icons.add_shopping_cart),
                   ),
                 ],
               ),

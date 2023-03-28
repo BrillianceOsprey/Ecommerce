@@ -25,13 +25,13 @@ class FeedsProductDialog extends StatelessWidget {
                 child: IconButton(
                   onPressed: () {
                     wp.addOrRemoveFromWishlist(
-                      product.id,
-                      product.title,
-                      product.imageUrl,
-                      product.price,
+                      product.productId,
+                      product.productTitle,
+                      product.productImage,
+                      product.productPrice,
                     );
                   },
-                  icon: wp.wishlistList.containsKey(product.id)
+                  icon: wp.wishlistList.containsKey(product.productId)
                       ? const Icon(
                           Icons.favorite,
                           color: Colors.red,
@@ -49,13 +49,13 @@ class FeedsProductDialog extends StatelessWidget {
                 child: IconButton(
                   onPressed: () {
                     cp.addToCart(
-                      product.id,
-                      product.title,
-                      product.imageUrl,
-                      product.price,
+                      product.productId,
+                      product.productTitle,
+                      product.productImage,
+                      product.productPrice,
                     );
                   },
-                  icon: cp.cartList.containsKey(product.id)
+                  icon: cp.cartList.containsKey(product.productId)
                       ? const Icon(
                           Icons.shopping_cart,
                           color: Colors.red,
@@ -75,7 +75,7 @@ class FeedsProductDialog extends StatelessWidget {
 
                   Navigator.of(context).pushNamed(
                     ProductDetailsScreen.routeName,
-                    arguments: product.id,
+                    arguments: product.productId,
                   );
                 },
                 icon: const Icon(

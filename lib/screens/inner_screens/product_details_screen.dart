@@ -85,7 +85,7 @@ class ProductDetailsScreenState extends State<ProductDetailsScreen> {
             foregroundDecoration: const BoxDecoration(color: Colors.black12),
             height: MediaQuery.of(context).size.height * 0.45,
             width: double.infinity,
-            child: Image.network(product.imageUrl),
+            child: Image.network(product.productImage),
           ),
           SingleChildScrollView(
             padding: const EdgeInsets.symmetric(vertical: 20),
@@ -122,7 +122,7 @@ class ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.9,
                               child: Text(
-                                product.title,
+                                product.productTitle,
                                 style: const TextStyle(
                                   fontSize: 28,
                                   fontWeight: FontWeight.w600,
@@ -131,7 +131,7 @@ class ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
                             const SizedBox(height: 6),
                             Text(
-                              '\$ ${product.price}',
+                              '\$ ${product.productPrice}',
                               style: const TextStyle(
                                 fontSize: 21,
                                 color: Colors.purple,
@@ -154,7 +154,7 @@ class ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       Padding(
                         padding: const EdgeInsets.all(16),
                         child: Text(
-                          product.description,
+                          product.productDescription,
                           style: const TextStyle(
                             fontSize: 21,
                             fontWeight: FontWeight.w600,
@@ -180,7 +180,7 @@ class ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       ),
                       ContentRow(
                         title: 'Category',
-                        nameTitle: product.productCategoryName,
+                        nameTitle: product.productCategory,
                       ),
                       ContentRow(
                         title: 'Popularity',
@@ -327,10 +327,10 @@ class BottomSheet extends StatefulWidget {
 class _BottomSheetState extends State<BottomSheet> {
   @override
   Widget build(BuildContext context) {
-    Logger.w('product detail in function()', widget.product.id);
+    Logger.w('product detail in function()', widget.product.productId);
     // Logger.w('product detail in function() detail id', widget.productId);
     Logger.w('product detail in function() detail provider',
-        widget.cartProvider.cartList.containsKey(widget.product.id));
+        widget.cartProvider.cartList.containsKey(widget.product.productId));
     // Logger.w('product detail in function() detail provider',
     //     widget.cartProvider.cartList);
 
@@ -346,9 +346,9 @@ class _BottomSheetState extends State<BottomSheet> {
                 onPressed: () {
                   cp.addToCart(
                     widget.productId,
-                    widget.product.title,
-                    widget.product.imageUrl,
-                    widget.product.price,
+                    widget.product.productTitle,
+                    widget.product.productImage,
+                    widget.product.productPrice,
                   );
                 },
                 // widget.cartProvider.cartList.containsKey(widget.productId)
@@ -415,9 +415,9 @@ class _BottomSheetState extends State<BottomSheet> {
                     onPressed: () {
                       wp.addOrRemoveFromWishlist(
                         widget.productId,
-                        widget.product.title,
-                        widget.product.imageUrl,
-                        widget.product.price,
+                        widget.product.productTitle,
+                        widget.product.productImage,
+                        widget.product.productPrice,
                       );
                     },
                     icon: wp.wishlistList.containsKey(widget.productId)

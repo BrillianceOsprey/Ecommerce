@@ -17,7 +17,7 @@ class BrandNavRailWidget extends StatelessWidget {
       onTap: () {
         Navigator.of(context).pushNamed(
           ProductDetailsScreen.routeName,
-          arguments: productAttribute.id,
+          arguments: productAttribute.productId,
         );
       },
       child: Padding(
@@ -44,7 +44,7 @@ class BrandNavRailWidget extends StatelessWidget {
                         topRight: Radius.circular(12),
                       ),
                       child: Image.network(
-                        productAttribute.imageUrl,
+                        productAttribute.productImage,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -64,7 +64,7 @@ class BrandNavRailWidget extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Text(
-                          '\$ ${productAttribute.price}',
+                          '\$ ${productAttribute.productPrice}',
                           style: TextStyle(fontSize: 16),
                         ),
                       ),
@@ -76,7 +76,7 @@ class BrandNavRailWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  ' ${productAttribute.title}',
+                  ' ${productAttribute.productTitle}',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(fontSize: 20),
@@ -90,7 +90,7 @@ class BrandNavRailWidget extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Text(
-                        ' ${productAttribute.productCategoryName} ',
+                        ' ${productAttribute.productCategory} ',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(fontSize: 20),

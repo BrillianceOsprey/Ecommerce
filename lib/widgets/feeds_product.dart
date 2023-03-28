@@ -22,7 +22,7 @@ class FeedsProductState extends State<FeedsProduct> {
       onTap: () {
         Navigator.of(context).pushNamed(
           ProductDetailsScreen.routeName,
-          arguments: productAttribute.id,
+          arguments: productAttribute.productId,
         );
         // Navigator.of(context).push(MaterialPageRoute(builder: (cxt) {
         //   return ProductDetailsScreen(
@@ -50,13 +50,13 @@ class FeedsProductState extends State<FeedsProduct> {
                           minHeight: Platform.isIOS ? 170 : 140,
                           maxHeight: MediaQuery.of(context).size.height * 0.21),
                       child: Center(
-                        child: Image.network(productAttribute.imageUrl),
+                        child: Image.network(productAttribute.productImage),
                       ),
                     ),
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    productAttribute.description,
+                    productAttribute.productDescription,
                     maxLines: 1,
                     style: const TextStyle(
                       fontSize: 18,
@@ -65,7 +65,7 @@ class FeedsProductState extends State<FeedsProduct> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '\$ ${productAttribute.price.toString()}',
+                    '\$ ${productAttribute.productPrice.toString()}',
                     maxLines: 1,
                     style: const TextStyle(
                       fontSize: 16,
