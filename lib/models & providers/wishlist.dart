@@ -15,8 +15,12 @@ class Wishlist with ChangeNotifier {
 }
 
 class WishlistProvider with ChangeNotifier {
+  List<Wishlist> wishList = [];
+
   final Map<String, Wishlist> _wishlistList = {};
   Map<String, Wishlist> get wishlistList => _wishlistList;
+
+  Future<void> fetchWishListProducts() async {}
 
   void addOrRemoveFromWishlist(
       String pId, String title, String imageUrl, double price) {

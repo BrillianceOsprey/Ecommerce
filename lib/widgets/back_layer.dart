@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ms_ecommerce_app/screens/inner_screens/upload_product_screen.dart';
+import 'package:ms_ecommerce_app/widgets/local_products_upload.dart';
 
 class BackLayer extends StatelessWidget {
   const BackLayer({Key? key}) : super(key: key);
@@ -43,6 +44,18 @@ class BackLayer extends StatelessWidget {
                         .pushNamed(UploadProductScreen.routeName);
                   },
                 ),
+                // _backLayerButton(
+                //   title: 'Upload local Products',
+                //   icon: Icons.upload,
+                //   onPressed: () {
+                //     // Navigator.of(context)
+                //     //     .pushNamed(UploadProductScreen.routeName);
+                //     Navigator.of(context)
+                //         .push(MaterialPageRoute(builder: (cxt) {
+                //       return const LocalProductUpload();
+                //     }));
+                //   },
+                // ),
               ],
             ),
           ),

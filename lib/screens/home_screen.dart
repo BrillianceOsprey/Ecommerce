@@ -46,12 +46,10 @@ class _HomeScreenState extends State<HomeScreen> {
     'assets/images/nike.jpeg',
     'assets/images/samsung.jpeg',
   ];
-  ProductProvider productProvider = ProductProvider();
   Future<void> getData() async {
     Future.microtask(() {
       productProvider.fetchProducts();
       productProvider.popularProducts;
-      _getUserData();
     });
   }
 
@@ -62,7 +60,6 @@ class _HomeScreenState extends State<HomeScreen> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     var data = preferences.getString("image_url") ?? '';
     User? user = _auth.currentUser;
-    Logger.clap(';asldjf;lksdfj', preferences.getString("image_url"));
     // String uid = "";
     if (user!.isAnonymous) {
       return;
@@ -73,20 +70,30 @@ class _HomeScreenState extends State<HomeScreen> {
         // _userImageUrl = user.photoURL!.isEmpty
         //     ? "https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg"
         //     : user.photoURL ?? '';
-        if (data.isNotEmpty) {
-          preferences.setString('image_url', user.photoURL ?? '');
-          _userImageUrl = preferences.getString('image_url') ?? '';
-        }
+
+        preferences.setString('image_url', user.photoURL ?? '');
+        _userImageUrl = preferences.getString('image_url') ??
+            'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg';
+
+        Logger.clap(';asldjf;lksdfj', preferences.getString("image_url"));
       });
     }
   }
 
-  @override
-  void didUpdateWidget(covariant HomeScreen oldWidget) {
-    _getUserData();
-    super.didUpdateWidget(oldWidget);
+  Future<void> _getProductsOnrefresh() async {
+    await Provider.of<ProductProvider>(context, listen: false).fetchProducts();
+    setState(() {});
   }
 
+  @override
+  void initState() {
+    _getProductsOnrefresh();
+    super.initState();
+    _getUserData();
+    getData();
+  }
+
+  ProductProvider productProvider = ProductProvider();
   @override
   Widget build(BuildContext context) {
     // final productData = Provider.of<ProductProvider>(context);
@@ -276,21 +283,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              SizedBox(
-                // color: Colors.amber,
-                height: 300,
-                width: double.infinity,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: popularProduct.length,
-                  itemBuilder: (ctx, i) {
-                    return ChangeNotifierProvider.value(
-                      value: popularProduct[i],
-                      child: const PopularProducts(),
-                    );
-                  },
-                ),
-              ),
+              Consumer<ProductProvider>(builder: (cxt, pp, _) {
+                return SizedBox(
+                  // color: Colors.amber,
+                  height: 300,
+                  width: double.infinity,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    // itemCount: popularProduct.length,
+                    itemCount: pp.popularProducts.length,
+                    itemBuilder: (ctx, i) {
+                      return ChangeNotifierProvider.value(
+                        value: pp.popularProducts[i],
+                        child: const PopularProducts(),
+                      );
+                    },
+                  ),
+                );
+              })
             ],
           ),
         ),

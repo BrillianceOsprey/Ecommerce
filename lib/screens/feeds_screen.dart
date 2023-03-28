@@ -26,6 +26,12 @@ class _FeedsScreenState extends State<FeedsScreen> {
   }
 
   @override
+  void initState() {
+    _getProductsOnrefresh();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final productProvider = Provider.of<ProductProvider>(context);
     List<Product> productsList = productProvider.products();
