@@ -172,11 +172,11 @@ class ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       ),
                       ContentRow(
                         title: 'Brand',
-                        nameTitle: product.brand,
+                        nameTitle: product.productBrand,
                       ),
                       ContentRow(
                         title: 'Quantity',
-                        nameTitle: '${product.quantity.toString()} left',
+                        nameTitle: '${product.productQuantity.toString()} left',
                       ),
                       ContentRow(
                         title: 'Category',

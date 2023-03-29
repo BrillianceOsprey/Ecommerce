@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ms_ecommerce_app/core/helpers/logger.dart';
 import 'package:ms_ecommerce_app/models%20&%20providers/product.dart';
+import 'package:uuid/uuid.dart';
 
 class LocalProductUpload extends StatefulWidget {
   const LocalProductUpload({super.key});
@@ -24,24 +25,27 @@ class _LocalProductUploadState extends State<LocalProductUpload> {
         prodList = pList.map((e) => e).toList();
       }
     }
-    Logger.w('LocalProduct List', prodList[0].brand);
+    Logger.w('LocalProduct List', prodList[0].productBrand);
 
     final User? user = _auth.currentUser;
     for (int i = 0; i < prodList.length; i++) {
+      final productId = const Uuid().v4();
       await FirebaseFirestore.instance
           .collection('products')
-          .doc(prodList[i].productId)
+          .doc(productId)
           .set({
-        'createdAt': Timestamp.now(),
+        'createdAt': DateTime.now(),
         'userId': user?.uid ?? '',
-        'productId': prodList[i].productId,
+        'productId': productId,
         'productTitle': prodList[i].productTitle,
         'productPrice': prodList[i].productPrice.toString(),
         'productDescription': prodList[i].productDescription,
-        'productCategory': 'Test',
+        'productCategory': prodList[i].productCategory,
         'productImage': prodList[i].productImage,
-        'productBrand': prodList[i].brand,
-        'productQuantity': prodList[i].quantity.toString(),
+        'productBrand': prodList[i].productBrand,
+        'productQuantity': prodList[i].productQuantity.toString(),
+        'isFavorite': prodList[i].isFavorite,
+        'isPopular': prodList[i].isPopular,
       });
     }
     // await FirebaseFirestore.instance

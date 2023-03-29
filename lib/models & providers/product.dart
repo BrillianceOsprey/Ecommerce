@@ -1,30 +1,40 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import 'package:ms_ecommerce_app/core/helpers/logger.dart';
+
 class Product with ChangeNotifier {
+  final String? createdAt;
   final String productId;
   final String productTitle;
   final String productDescription;
   final double productPrice;
   final String productImage;
   final String productCategory;
-  final String brand;
-  final int quantity;
+  final String productBrand;
+  final int productQuantity;
   final bool isFavorite;
   final bool isPopular;
 
   Product({
     required this.productId,
+    this.createdAt,
     required this.productTitle,
-    required this.brand,
+    required this.productBrand,
     required this.productDescription,
     required this.productImage,
     required this.isFavorite,
     required this.isPopular,
     required this.productPrice,
     required this.productCategory,
-    required this.quantity,
+    required this.productQuantity,
   });
+
+  @override
+  String toString() {
+    return 'Product(createdAt: $createdAt, productId: $productId, productTitle: $productTitle, productDescription: $productDescription, productPrice: $productPrice, productImage: $productImage, productCategory: $productCategory, productBrand: $productBrand, productQuantity: $productQuantity, isFavorite: $isFavorite, isPopular: $isPopular)';
+  }
 }
 
 class ProductProvider with ChangeNotifier {
@@ -401,9 +411,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 50.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/81%2Bh9mpyQmL._AC_SL1500_.jpg',
-        brand: 'Samsung',
+        productBrand: 'Samsung',
         productCategory: 'Phones',
-        quantity: 65,
+        productQuantity: 65,
         isFavorite: false,
         isPopular: true),
     Product(
@@ -414,9 +424,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 50.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/51ME-ADMjRL._AC_SL1000_.jpg',
-        brand: 'Samsung ',
+        productBrand: 'Samsung ',
         productCategory: 'Phones',
-        quantity: 1002,
+        productQuantity: 1002,
         isFavorite: false,
         isPopular: false),
     Product(
@@ -427,9 +437,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 50.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/61HFJwSDQ4L._AC_SL1000_.jpg',
-        brand: 'Samsung',
+        productBrand: 'Samsung',
         productCategory: 'Phones',
-        quantity: 6423,
+        productQuantity: 6423,
         isFavorite: false,
         isPopular: true),
     Product(
@@ -440,9 +450,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 1220.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/61wLbRLshAL._AC_SL1200_.jpg',
-        brand: 'Apple',
+        productBrand: 'Apple',
         productCategory: 'Laptops',
-        quantity: 815,
+        productQuantity: 815,
         isFavorite: false,
         isPopular: true),
     Product(
@@ -453,9 +463,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 700.89,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/315CQ1KmlwL._AC_.jpg',
-        brand: 'Apple',
+        productBrand: 'Apple',
         productCategory: 'Laptops',
-        quantity: 815,
+        productQuantity: 815,
         isFavorite: false,
         isPopular: false),
     Product(
@@ -466,9 +476,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 780.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/61QRQHn0jJL._AC_SL1200_.jpg',
-        brand: 'Apple',
+        productBrand: 'Apple',
         productCategory: 'Laptops',
-        quantity: 4455,
+        productQuantity: 4455,
         isFavorite: false,
         isPopular: true),
     Product(
@@ -479,9 +489,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 800.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/61qNHbx9LDL._AC_SL1200_.jpg',
-        brand: 'Apple',
+        productBrand: 'Apple',
         productCategory: 'Laptops',
-        quantity: 885,
+        productQuantity: 885,
         isFavorite: false,
         isPopular: false),
     Product(
@@ -492,9 +502,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 650.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/71P-p2sj6eL._AC_SL1500_.jpg',
-        brand: 'No brand',
+        productBrand: 'No brand',
         productCategory: 'Furniture',
-        quantity: 91,
+        productQuantity: 91,
         isFavorite: false,
         isPopular: true),
     Product(
@@ -505,9 +515,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 120.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/71xytsyiHzL._AC_SL1500_.jpg',
-        brand: 'No brand',
+        productBrand: 'No brand',
         productCategory: 'Furniture',
-        quantity: 815,
+        productQuantity: 815,
         isFavorite: false,
         isPopular: false),
     Product(
@@ -518,9 +528,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 1220.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/81sBT3voCPL._AC_SL1500_.jpg',
-        brand: 'No brand',
+        productBrand: 'No brand',
         productCategory: 'Furniture',
-        quantity: 8100,
+        productQuantity: 8100,
         isFavorite: false,
         isPopular: true),
     Product(
@@ -531,9 +541,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 127.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/71Rj3InxQlL._SL1500_.jpg',
-        brand: 'No brand',
+        productBrand: 'No brand',
         productCategory: 'Furniture',
-        quantity: 9145,
+        productQuantity: 9145,
         isFavorite: false,
         isPopular: false),
     Product(
@@ -544,9 +554,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 1224.88,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/81KabJxRvDL._AC_SL1500_.jpg',
-        brand: 'No brand',
+        productBrand: 'No brand',
         productCategory: 'Furniture',
-        quantity: 25,
+        productQuantity: 25,
         isFavorite: false,
         isPopular: true),
     Product(
@@ -557,9 +567,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 1220.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/81khjDZg5xL._AC_SL1500_.jpg',
-        brand: 'No brand',
+        productBrand: 'No brand',
         productCategory: 'Furniture',
-        quantity: 651,
+        productQuantity: 651,
         isFavorite: false,
         isPopular: false),
     Product(
@@ -570,9 +580,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 1220.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/716-fllmUCL._AC_SL1500_.jpg',
-        brand: 'No brand',
+        productBrand: 'No brand',
         productCategory: 'Furniture',
-        quantity: 594,
+        productQuantity: 594,
         isFavorite: false,
         isPopular: true),
     Product(
@@ -583,9 +593,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 300.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/71QxxtRFFkL._AC_SL1232_.jpg',
-        brand: 'No brand',
+        productBrand: 'No brand',
         productCategory: 'Furniture',
-        quantity: 78,
+        productQuantity: 78,
         isFavorite: false,
         isPopular: false),
     Product(
@@ -596,9 +606,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 100.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/71vCuRn4CkL._AC_SL1500_.jpg',
-        brand: 'Apple',
+        productBrand: 'Apple',
         productCategory: 'Watches',
-        quantity: 156,
+        productQuantity: 156,
         isFavorite: false,
         isPopular: true),
     Product(
@@ -609,9 +619,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 86.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/51EWl3XsiYL._AC_SL1000_.jpg',
-        brand: 'No brand',
+        productBrand: 'No brand',
         productCategory: 'Watches',
-        quantity: 142,
+        productQuantity: 142,
         isFavorite: false,
         isPopular: false),
     Product(
@@ -622,9 +632,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 300.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/51bSW9gjoaL._AC_SL1024_.jpg',
-        brand: 'Samsung',
+        productBrand: 'Samsung',
         productCategory: 'Watches',
-        quantity: 167,
+        productQuantity: 167,
         isFavorite: false,
         isPopular: false),
     Product(
@@ -635,9 +645,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 40.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/51r2LCE3FLL._AC_SL1000_.jpg',
-        brand: 'No brand',
+        productBrand: 'No brand',
         productCategory: 'Watches',
-        quantity: 659,
+        productQuantity: 659,
         isFavorite: false,
         isPopular: false),
     Product(
@@ -648,9 +658,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 20.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/61MVdCYfbOL._AC_UX679_.jpg',
-        brand: 'No brand',
+        productBrand: 'No brand',
         productCategory: 'Watches',
-        quantity: 98,
+        productQuantity: 98,
         isFavorite: false,
         isPopular: false),
     Product(
@@ -661,9 +671,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 33.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/91M50AHRTKL._AC_UX569_.jpg',
-        brand: 'No brand',
+        productBrand: 'No brand',
         productCategory: 'Watches',
-        quantity: 951,
+        productQuantity: 951,
         isFavorite: false,
         isPopular: false),
     Product(
@@ -674,9 +684,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 400.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/71bf9IpGjtL._AC_SL1500_.jpg',
-        brand: 'Apple',
+        productBrand: 'Apple',
         productCategory: 'Watches',
-        quantity: 951,
+        productQuantity: 951,
         isFavorite: false,
         isPopular: false),
     Product(
@@ -687,9 +697,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 200.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/71JtUMDeBBL._AC_SL1500_.jpg',
-        brand: 'Apple',
+        productBrand: 'Apple',
         productCategory: 'Watches',
-        quantity: 951,
+        productQuantity: 951,
         isFavorite: false,
         isPopular: false),
     Product(
@@ -700,9 +710,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 183.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/61gCtkVYb5L._AC_SL1000_.jpg',
-        brand: 'Apple',
+        productBrand: 'Apple',
         productCategory: 'Watches',
-        quantity: 56,
+        productQuantity: 56,
         isFavorite: false,
         isPopular: true),
     Product(
@@ -713,9 +723,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 150.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/61n1c2vnPJL._AC_SL1500_.jpg',
-        brand: 'Samsung',
+        productBrand: 'Samsung',
         productCategory: 'Watches',
-        quantity: 78,
+        productQuantity: 78,
         isFavorite: false,
         isPopular: true),
     Product(
@@ -726,9 +736,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 184.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/81Iu41zFPwL._AC_SL1500_.jpg',
-        brand: 'Samsung',
+        productBrand: 'Samsung',
         productCategory: 'Watches',
-        quantity: 9598,
+        productQuantity: 9598,
         isFavorite: false,
         isPopular: true),
     Product(
@@ -739,9 +749,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 120.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/518qjbbuGZL._AC_SL1000_.jpg',
-        brand: 'Samsung',
+        productBrand: 'Samsung',
         productCategory: 'Watches',
-        quantity: 951,
+        productQuantity: 951,
         isFavorite: false,
         isPopular: false),
     Product(
@@ -752,9 +762,9 @@ class ProductProvider with ChangeNotifier {
         productPrice: 180.99,
         productImage:
             'https://images-na.ssl-images-amazon.com/images/I/71yPa1g4gWL._AC_SL1500_.jpg',
-        brand: 'Huawei',
+        productBrand: 'Huawei',
         productCategory: 'Watches',
-        quantity: 951,
+        productQuantity: 951,
         isFavorite: false,
         isPopular: true),
   ];
@@ -769,46 +779,87 @@ class ProductProvider with ChangeNotifier {
         .then((QuerySnapshot productSnapshot) {
       _products = [];
       for (var element in productSnapshot.docs) {
+        // var parseDatee = DateTime.parse(element['createdAt']);
         _products.insert(
           0,
           Product(
+            createdAt: element.get('createdAt').toString(),
             productId: element.get('productId'),
             productTitle: element.get('productTitle'),
-            brand: element.get('productBrand'),
+            productBrand: element.get('productBrand'),
             productDescription: element.get('productDescription'),
             productImage: element.get('productImage'),
             productPrice: double.parse(element.get('productPrice')),
             productCategory: element.get('productCategory'),
-            quantity: int.parse(element.get('productQuantity')),
-            isFavorite: false,
-            isPopular: false,
+            productQuantity: int.parse(element.get('productQuantity')),
+            isFavorite: element.get('isFavorite'),
+            isPopular: element.get('isPopular'),
           ),
         );
+        // _products.sort((a, b) => a.createdAt!.compareTo(b.createdAt!));
+      }
+    });
+  }
+
+  Future<void> fetchAddToCartProducts(String uid) async {
+    await FirebaseFirestore.instance
+        .collection('addToCarts')
+        .doc(uid)
+        .collection('productLists')
+        .get()
+        .then((QuerySnapshot productSnapshot) {
+      _products = [];
+      for (var element in productSnapshot.docs) {
+        // var parseDatee = DateTime.parse(element['createdAt']);
+        _products.insert(
+          0,
+          Product(
+            createdAt: element.get('createdAt').toString(),
+            productId: element.get('productId'),
+            productTitle: element.get('productTitle'),
+            productBrand: element.get('productBrand'),
+            productDescription: element.get('productDescription'),
+            productImage: element.get('productImage'),
+            productPrice: double.parse(element.get('productPrice')),
+            productCategory: element.get('productCategory'),
+            productQuantity: int.parse(element.get('productQuantity')),
+            isFavorite: element.get('isFavorite'),
+            isPopular: element.get('isPopular'),
+          ),
+        );
+        // _products.sort((a, b) => a.createdAt!.compareTo(b.createdAt!));
       }
     });
   }
 
   List<Product> products() => _products;
   List<Product> localProducts() => _localProducts;
+  List<Product> addTocartProduct() => _products;
 
   List<Product> getByCatName(String catName) {
     List<Product> catList = _products
-        .where((element) =>
-            element.productCategory.toLowerCase() == catName.toLowerCase())
+        .where(
+          (element) =>
+              element.productCategory.toLowerCase() == catName.toLowerCase(),
+        )
         .toList();
     return catList;
   }
 
   List<Product> getByBrandName(String brandName) {
     List<Product> catList = _products
-        .where(
-            (element) => element.brand.toLowerCase() == brandName.toLowerCase())
+        .where((element) =>
+            element.productBrand.toLowerCase() == brandName.toLowerCase())
         .toList();
     return catList;
   }
 
   List<Product> get popularProducts {
+    // return _products.where((element) => element.isPopular).toList();
     return _products.where((element) => element.isPopular).toList();
+    //  for(var product in _products) {
+
+    //  }
   }
 
   Product getById(String prodId) {

@@ -78,7 +78,7 @@ class FeedsProductState extends State<FeedsProduct> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Quantity: ${productAttribute.quantity.toString()} left',
+                        'Quantity: ${productAttribute.productQuantity.toString()} left',
                         maxLines: 1,
                         style: const TextStyle(
                           fontSize: 12,

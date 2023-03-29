@@ -89,16 +89,19 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
             .collection('products')
             .doc(productId)
             .set({
-          'createdAt': Timestamp.now(),
+          // 'createdAt': Timestamp.now(),
+          'createdAt': DateTime.now(),
           'userId': uid,
           'productId': productId,
           'productTitle': _productTitle,
-          'productPrice': _productPrice,
+          'productPrice': _productPrice.toString(),
           'productDescription': _productDescription,
           'productCategory': _productCategory,
           'productImage': _url,
           'productBrand': _productBrand,
-          'productQuantity': _productQuantity,
+          'productQuantity': _productQuantity.toString(),
+          'isFavorite': false,
+          'isPopular': true,
         });
 
         if (mounted) {

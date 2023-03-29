@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'dart:convert';
+
 import 'package:backdrop/backdrop.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -97,9 +99,16 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     // final productData = Provider.of<ProductProvider>(context);
-
+    final productList = productProvider.products();
+    List<Product> ppList = [];
+    ppList.clear();
+    for (var p in productList) {
+      if (p.isPopular == true) {
+        ppList.addAll(productList);
+      }
+      Logger.e('Product list home page', productList.length);
+    }
     final popularProduct = productProvider.popularProducts;
-    print('Product list ${popularProduct.length}');
     productProvider.fetchProducts();
 
     return Scaffold(
@@ -293,6 +302,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     // itemCount: popularProduct.length,
                     itemCount: pp.popularProducts.length,
                     itemBuilder: (ctx, i) {
+                      Logger.d('popular product listsdsd',
+                          pp.popularProducts.length);
                       return ChangeNotifierProvider.value(
                         value: pp.popularProducts[i],
                         child: const PopularProducts(),
