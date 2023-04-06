@@ -116,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
         headerHeight: MediaQuery.of(context).size.height * 0.4,
         backLayerBackgroundColor: Colors.grey.shade900,
         appBar: BackdropAppBar(
-          title: const Text('Flutter Shop'),
+          title: const Text('MS Shop'),
           leading: const BackdropToggleButton(
             icon: AnimatedIcons.home_menu,
           ),

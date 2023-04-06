@@ -12,10 +12,10 @@ class CarouselSlide extends StatefulWidget {
 class _CarouselSlideState extends State<CarouselSlide> {
   int currentIndex = 0;
   final List<String> _carouselImages = [
-    'assets/images/carousel1.png',
-    'assets/images/carousel2.jpeg',
-    'assets/images/carousel3.jpeg',
-    'assets/images/carousel4.png',
+    'assets/images/cart_light_blue.jpg',
+    'assets/images/shopping2.jpeg',
+    'assets/images/cart_light_green.png',
+    'assets/images/cart_red.png',
   ];
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class _CarouselSlideState extends State<CarouselSlide> {
               autoPlayAnimationDuration: const Duration(seconds: 1),
 
               autoPlay: true,
-              // aspectRatio: 18 / 8,
+              aspectRatio: 18 / 8,
               onPageChanged: (index, reason) {
                 setState(() {
                   currentIndex = index;

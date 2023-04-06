@@ -135,7 +135,7 @@ class _LandingScreenState extends State<LandingScreen>
               ),
               Center(
                 child: Text(
-                  'Flutter Shop',
+                  'Ms Shop',
                   style: TextStyle(fontSize: 65),
                 ),
               ),
