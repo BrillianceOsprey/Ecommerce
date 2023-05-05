@@ -34,6 +34,9 @@ dependencies:
   firebase_auth: ^4.3.0
   firebase_core: ^2.8.0
   firebase_storage: ^11.0.16
+  freezed_annotation: ^2.1.0
+  # serializable
+  json_annotation: ^4.6.0
   google_sign_in: ^6.0.2
   uuid: ^3.0.7
   wave: ^0.2.2
@@ -45,6 +48,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  freezed: ^2.1.0+1
+  json_serializable: ^6.3.1
+  build_runner: any  
 
   flutter_lints: ^2.0.0
 

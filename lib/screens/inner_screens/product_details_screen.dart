@@ -331,7 +331,6 @@ class BottomSheet extends StatefulWidget {
 }
 
 class _BottomSheetState extends State<BottomSheet> {
-  CartRemoteService cartRemoteService = CartRemoteService();
   // final FirebaseAuth _auth = FirebaseAuth.instance;
   // addToCartToFirebase() async {
   //   final User? user = _auth.currentUser;
@@ -373,7 +372,7 @@ class _BottomSheetState extends State<BottomSheet> {
             child: Center(child: Consumer<CartProvider>(builder: (cxt, cp, _) {
               return TextButton(
                 onPressed: () {
-                  cartRemoteService.addToCartToFirebase(
+                  addToCartToFirebase(
                     context,
                     productId: widget.productId,
                     productTitle: widget.product.productTitle,

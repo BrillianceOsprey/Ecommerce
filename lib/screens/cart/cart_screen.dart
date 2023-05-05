@@ -1,6 +1,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:flutter/material.dart';
+import 'package:ms_ecommerce_app/core/infrastructure/cart_remote_service.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 import '../../core/helpers/logger.dart';
@@ -28,6 +29,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   void initState() {
     // StripeService.init();
+    fetchCarts();
     getCartFromFirebase();
     super.initState();
   }
