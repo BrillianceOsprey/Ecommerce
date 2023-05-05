@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ms_ecommerce_app/core/helpers/logger.dart';
 
 class Wishlist with ChangeNotifier {
   final String cartId;
@@ -25,8 +26,10 @@ class WishlistProvider with ChangeNotifier {
   void addOrRemoveFromWishlist(
       String pId, String title, String imageUrl, double price) {
     if (_wishlistList.containsKey(pId)) {
+      Logger.clap('wishlist f1', pId);
       removeItem(pId);
     } else {
+      Logger.clap('wishlist f2', pId);
       _wishlistList.putIfAbsent(
         pId,
         () => Wishlist(

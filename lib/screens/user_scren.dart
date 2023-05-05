@@ -185,7 +185,7 @@ class _UserScreenState extends State<UserScreen> {
                                 color: Colors.deepPurpleAccent,
                               ),
                             ),
-                            title: const Text('Wishlist'),
+                            title: const Text('Cart'),
                             trailing: const Icon(Icons.arrow_forward_ios),
                           ),
                         );

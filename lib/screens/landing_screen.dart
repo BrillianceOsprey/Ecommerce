@@ -85,44 +85,50 @@ class _LandingScreenState extends State<LandingScreen>
     'assets/images/shopping2.jpeg',
   ];
 
-  // @override
-  // void initState() {
-  //   _images.shuffle();
+  @override
+  void initState() {
+    _images.shuffle();
 
-  //   _animationController = AnimationController(
-  //     vsync: this,
-  //     duration: Duration(seconds: 20),
-  //   );
-  //   _animation =
-  //       CurvedAnimation(parent: _animationController, curve: Curves.linear)
-  //         ..addListener(() {
-  //           setState(() {});
-  //         })
-  //         ..addStatusListener((animationStatus) {
-  //           if (animationStatus == AnimationStatus.completed) {
-  //             _animationController.reset();
-  //             _animationController.forward();
-  //           }
-  //         });
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 20),
+    );
+    _animation =
+        CurvedAnimation(parent: _animationController, curve: Curves.linear)
+          ..addListener(() {
+            setState(() {});
+          })
+          ..addStatusListener((animationStatus) {
+            if (animationStatus == AnimationStatus.completed) {
+              _animationController.reset();
+              _animationController.forward();
+            }
+          });
 
-  //   _animationController.forward();
-  //   super.initState();
-  // }
+    _animationController.forward();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          // SizedBox(
-          //   height: double.infinity,
-          //   width: double.infinity,
-          //   child: Image.asset(
-          //     _images[0],
-          //     fit: BoxFit.cover,
-          //     alignment: FractionalOffset(_animation.value, 0),
-          //   ),
-          // ),
+          SizedBox(
+            height: double.infinity,
+            width: double.infinity,
+            child: Image.asset(
+              _images[0],
+              fit: BoxFit.cover,
+              alignment: FractionalOffset(_animation.value, 0),
+            ),
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: const [

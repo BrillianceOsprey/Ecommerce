@@ -69,15 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
       // final DocumentSnapshot userDocs =
       //     await FirebaseFirestore.instance.collection('users').doc(uid).get();
       setState(() {
-        // _userImageUrl = user.photoURL!.isEmpty
-        //     ? "https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg"
-        //     : user.photoURL ?? '';
-
         preferences.setString('image_url', user.photoURL ?? '');
         _userImageUrl = preferences.getString('image_url') ??
             'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg';
-
-        Logger.clap(';asldjf;lksdfj', preferences.getString("image_url"));
       });
     }
   }
@@ -143,16 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {},
               icon: CircleAvatar(
                 backgroundColor: Colors.white,
-                child:
-                    // CircleAvatar(
-                    //   radius: 14,
-                    //   backgroundImage:
-                    //   NetworkImage(
-                    //     _userImageUrl,
-                    //   ),
-
-                    // ),
-                    CircleAvatar(
+                child: CircleAvatar(
                   radius: 14,
                   child: CachedNetworkImage(
                     imageUrl: _userImageUrl,
@@ -183,14 +168,10 @@ class _HomeScreenState extends State<HomeScreen> {
           onRefresh: getData,
           child: ListView(
             children: [
-              const SizedBox(width: double.infinity, child: CarouselSlide()
-                  // Carousel(
-                  //   images: _carouselImages,
-                  //   indicatorBgPadding: 7,
-                  //   dotSize: 5,
-                  //   boxFit: BoxFit.fill,
-                  // ),
-                  ),
+              const SizedBox(
+                width: double.infinity,
+                child: CarouselSlide(),
+              ),
               const SizedBox(height: 20),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.0),

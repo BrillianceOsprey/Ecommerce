@@ -19,17 +19,25 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  CartProvider cartProviders = CartProvider();
+  List<Cart> cartLList = [];
+  Future<void> getCartFromFirebase() async {
+    Future.microtask(() => cartProviders.fetchCarts());
+  }
+
   @override
   void initState() {
     // StripeService.init();
+    getCartFromFirebase();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
-    Logger.clap(
-        'product detail in function() cart screen', {cartProvider.cartList});
+    final cartsList = cartProviders.carts();
+
+    Logger.clap('product detail in function() cart screen', cartsList);
     GlobalMethods globalMethods = GlobalMethods();
     return cartProvider.cartList.isEmpty
         ? const Scaffold(

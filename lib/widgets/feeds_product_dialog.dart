@@ -22,30 +22,30 @@ class FeedsProductDialog extends StatefulWidget {
 class _FeedsProductDialogState extends State<FeedsProductDialog> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  addToCartToFirebase() async {
-    final User? user = _auth.currentUser;
-    final uid = user?.uid ?? '';
-    await FirebaseFirestore.instance
-        .collection('addToCarts')
-        .doc(uid)
-        .collection('productLists')
-        .doc(widget.product.productId)
-        .set({
-      // 'createdAt': Timestamp.now(),
-      'createdAt': DateTime.now(),
-      'userId': uid,
-      'productId': widget.product.productId,
-      'productTitle': widget.product.productTitle,
-      'productPrice': widget.product.productPrice,
-      'productDescription': widget.product.productDescription,
-      'productCategory': widget.product.productCategory,
-      'productImage': widget.product.productImage,
-      'productBrand': widget.product.productBrand,
-      'productQuantity': widget.product.productQuantity,
-      'isFavorite': widget.product.isFavorite,
-      'isPopular': widget.product.isPopular,
-    });
-  }
+  // addToCartToFirebase() async {
+  //   final User? user = _auth.currentUser;
+  //   final uid = user?.uid ?? '';
+  //   await FirebaseFirestore.instance
+  //       .collection('addToCarts')
+  //       .doc(uid)
+  //       .collection('productLists')
+  //       .doc(widget.product.productId)
+  //       .set({
+  //     // 'createdAt': Timestamp.now(),
+  //     'createdAt': DateTime.now(),
+  //     'userId': uid,
+  //     'productId': widget.product.productId,
+  //     'productTitle': widget.product.productTitle,
+  //     'productPrice': widget.product.productPrice,
+  //     'productDescription': widget.product.productDescription,
+  //     'productCategory': widget.product.productCategory,
+  //     'productImage': widget.product.productImage,
+  //     'productBrand': widget.product.productBrand,
+  //     'productQuantity': widget.product.productQuantity,
+  //     'isFavorite': widget.product.isFavorite,
+  //     'isPopular': widget.product.isPopular,
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class _FeedsProductDialogState extends State<FeedsProductDialog> {
                       widget.product.productImage,
                       widget.product.productPrice,
                     );
-                    addToCartToFirebase();
+                    // addToCartToFirebase();
                   },
                   icon: cp.cartList.containsKey(widget.product.productId)
                       ? const Icon(

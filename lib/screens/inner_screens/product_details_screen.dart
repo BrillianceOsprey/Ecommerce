@@ -1,8 +1,11 @@
 import 'package:badges/badges.dart' as badges;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ms_ecommerce_app/core/helpers/logger.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/infrastructure/cart_remote_service.dart';
 import '../../models & providers/cart.dart';
 import '../../models & providers/product.dart';
 import '../../models & providers/wishlist.dart';
@@ -21,11 +24,14 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class ProductDetailsScreenState extends State<ProductDetailsScreen> {
   GlobalKey previewContainer = GlobalKey();
-  ProductProvider productProvider = ProductProvider();
-  CartProvider cartProvider = CartProvider();
-  WishlistProvider wishlistProvider = WishlistProvider();
+  // ProductProvider productProvider = ProductProvider();
+  // CartProvider cartProvider = CartProvider();
+  // WishlistProvider wishlistProvider = WishlistProvider();
   @override
   Widget build(BuildContext context) {
+    final productProvider = Provider.of<ProductProvider>(context);
+    final cartProvider = Provider.of<CartProvider>(context);
+    final wishlistProvider = Provider.of<WishlistProvider>(context);
     final productId = ModalRoute.of(context)!.settings.arguments as String;
     List<Product> productsList = productProvider.products();
     final product = productProvider.getById(productId);
@@ -325,6 +331,29 @@ class BottomSheet extends StatefulWidget {
 }
 
 class _BottomSheetState extends State<BottomSheet> {
+  CartRemoteService cartRemoteService = CartRemoteService();
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
+  // addToCartToFirebase() async {
+  //   final User? user = _auth.currentUser;
+  //   final uid = user?.uid ?? '';
+  //   String cartId = DateTime.now().toIso8601String();
+  //   await FirebaseFirestore.instance
+  //       .collection('cart')
+  //       .doc(uid)
+  //       .collection('cartLists')
+  //       .doc(cartId)
+  //       .set({
+  //     // 'createdAt': Timestamp.now(),
+  //     'cartId': cartId,
+  //     'userId': uid,
+  //     'productId': widget.product.productId,
+  //     'productTitle': widget.product.productTitle,
+  //     'productPrice': widget.product.productPrice,
+  //     'productImage': widget.product.productImage,
+  //     'productQuantity': widget.product.productQuantity,
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     Logger.w('product detail in function()', widget.product.productId);
@@ -344,6 +373,14 @@ class _BottomSheetState extends State<BottomSheet> {
             child: Center(child: Consumer<CartProvider>(builder: (cxt, cp, _) {
               return TextButton(
                 onPressed: () {
+                  cartRemoteService.addToCartToFirebase(
+                    context,
+                    productId: widget.productId,
+                    productTitle: widget.product.productTitle,
+                    productPrice: widget.product.productPrice.toString(),
+                    productImage: widget.product.productImage,
+                    productQuantity: widget.product.productQuantity.toString(),
+                  );
                   cp.addToCart(
                     widget.productId,
                     widget.product.productTitle,
@@ -413,6 +450,8 @@ class _BottomSheetState extends State<BottomSheet> {
                 builder: (cxt, wp, _) {
                   return IconButton(
                     onPressed: () {
+                      Logger.i('wishlist',
+                          wp.wishlistList.containsKey(widget.productId));
                       wp.addOrRemoveFromWishlist(
                         widget.productId,
                         widget.product.productTitle,
