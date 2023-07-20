@@ -28,6 +28,7 @@ import 'screens/wishlist/wishlist_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<ThemeNotifier>(builder: (context, notifier, _) {
         return MaterialApp(
+            // themeMode: ThemeMode.light,
             debugShowCheckedModeBanner: false,
             theme: MyAppTheme.myThemes(notifier.isDark, context),
             home: const AuthStateScreen(),

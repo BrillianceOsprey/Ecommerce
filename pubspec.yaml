@@ -6,7 +6,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.3 <3.0.0'
+  sdk: ">=3.0.5 <4.0.0"
 
 dependencies:
   flutter:
@@ -26,8 +26,8 @@ dependencies:
   # carousel_pro: ^1.0.0
   carousel_slider: ^4.2.1
   # flutter_swiper: ^1.1.6
-  card_swiper: ^2.0.4
-  backdrop: ^0.8.1
+  card_swiper: ^3.0.1
+  backdrop: ^0.9.0
   carousel_pro_nullsafety: ^2.0.0
   smooth_page_indicator: ^1.0.1
   cloud_firestore: ^4.4.5
@@ -40,8 +40,8 @@ dependencies:
   google_sign_in: ^6.0.2
   uuid: ^3.0.7
   wave: ^0.2.2
-  http: ^0.13.5
-  image_picker: ^0.8.7
+  http: ^1.1.0
+  image_picker: ^1.0.1
   flutter_swiper_null_safety: ^1.0.2
   cached_network_image: ^3.2.3
   

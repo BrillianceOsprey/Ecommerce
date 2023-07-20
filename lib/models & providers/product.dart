@@ -2,7 +2,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'package:ms_ecommerce_app/core/helpers/logger.dart';
 
 class Product with ChangeNotifier {
   final String? createdAt;
