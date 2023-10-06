@@ -1,0 +1,10 @@
+export 'presentation/home_screen.dart';
+export 'presentation/widgets/back_layer.dart';
+export 'presentation/widgets/banner.dart';
+export 'presentation/widgets/brands_nav_rail.dart';
+export 'presentation/widgets/brands_nav_rail_widget.dart';
+export 'presentation/widgets/categories_feed_screen.dart';
+export 'presentation/widgets/category.dart';
+export 'presentation/widgets/popular_propducts.dart';
+export 'presentation/widgets/product_details_screen.dart';
+export 'presentation/widgets/upload_product_screen.dart';
