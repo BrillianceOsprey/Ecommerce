@@ -5,7 +5,7 @@ import '../landing_screen.dart';
 import '../main_screen.dart';
 
 class AuthStateScreen extends StatelessWidget {
-  const AuthStateScreen({Key? key}) : super(key: key);
+  const AuthStateScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

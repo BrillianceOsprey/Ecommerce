@@ -11,7 +11,7 @@ import 'login_screen.dart';
 class SignupScreen extends StatefulWidget {
   static const routeName = '/Signup-screen';
 
-  const SignupScreen({Key? key}) : super(key: key);
+  const SignupScreen({super.key});
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
@@ -95,6 +95,7 @@ class _SignupScreenState extends State<SignupScreen> {
         }
       }
     } catch (error) {
+      // ignore: use_build_context_synchronously
       _globalMethods.authDialog(context, error.toString());
     } finally {
       setState(() {

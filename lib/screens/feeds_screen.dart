@@ -13,7 +13,7 @@ import 'cart/cart_screen.dart';
 class FeedsScreen extends StatefulWidget {
   static const routeName = '/Feeds-screen';
 
-  const FeedsScreen({Key? key}) : super(key: key);
+  const FeedsScreen({super.key});
 
   @override
   State<FeedsScreen> createState() => _FeedsScreenState();

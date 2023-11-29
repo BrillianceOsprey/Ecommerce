@@ -12,14 +12,14 @@ class FullCart extends StatefulWidget {
   // final int quantity;
   // final double price;
   const FullCart({
-    Key? key,
+    super.key,
     required this.pId,
     // required this.id,
     // required this.imageUrl,
     // required this.price,
     // required this.quantity,
     // required this.title,
-  }) : super(key: key);
+  });
 
   @override
   FullCartState createState() => FullCartState();
@@ -126,8 +126,8 @@ class FullCartState extends State<FullCart> {
                         ),
                       ],
                     ),
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Text(
                           'Shipping : ',
                           style: TextStyle(fontSize: 16),

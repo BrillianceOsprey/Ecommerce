@@ -7,7 +7,7 @@ import 'package:ms_ecommerce_app/screens/user_scren.dart';
 
 class BottomNavScreen extends StatefulWidget {
   static const routeName = '/Bottom-nav-screen';
-  const BottomNavScreen({Key? key}) : super(key: key);
+  const BottomNavScreen({super.key});
 
   @override
   BottomNavScreenState createState() => BottomNavScreenState();

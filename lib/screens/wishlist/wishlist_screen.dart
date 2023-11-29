@@ -9,7 +9,7 @@ import 'full_wishlist.dart';
 class WishlistScreen extends StatelessWidget {
   static const routeName = '/wishlist-screen';
 
-  const WishlistScreen({Key? key}) : super(key: key);
+  const WishlistScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

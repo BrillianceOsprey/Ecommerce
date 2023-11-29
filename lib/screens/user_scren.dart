@@ -17,7 +17,7 @@ import 'package:provider/provider.dart';
 class UserScreen extends StatefulWidget {
   static const routeName = '/User-screen';
 
-  const UserScreen({Key? key}) : super(key: key);
+  const UserScreen({super.key});
 
   @override
   State<UserScreen> createState() => _UserScreenState();
@@ -348,11 +348,11 @@ class _userListTile extends StatelessWidget {
     this.tIcon,
     this.tIconCallBack,
     this.onTap,
-    Key? key,
+    super.key,
     required this.lIcon,
     required this.color,
     required this.title,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -378,9 +378,9 @@ class _userListTile extends StatelessWidget {
 class _userTileHeightSpace extends StatelessWidget {
   final double height;
   const _userTileHeightSpace({
-    Key? key,
+    super.key,
     required this.height,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -392,9 +392,9 @@ class _userTileHeightSpace extends StatelessWidget {
 class _userTileText extends StatelessWidget {
   final String text;
   const _userTileText({
-    Key? key,
+    super.key,
     required this.text,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

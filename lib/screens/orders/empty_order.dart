@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../bottom_nav_screen.dart';
 
 class EmptyOrder extends StatelessWidget {
-  const EmptyOrder({Key? key}) : super(key: key);
+  const EmptyOrder({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,7 @@ import 'brands_nav_rail_widget.dart';
 
 class BrandsNavRailScreen extends StatefulWidget {
   static const routeName = '/brands-nav-rail';
-  const BrandsNavRailScreen({Key? key}) : super(key: key);
+  const BrandsNavRailScreen({super.key});
 
   @override
   State<BrandsNavRailScreen> createState() => _BrandsNavRailScreenState();
@@ -179,8 +179,8 @@ class ContentSpace extends StatelessWidget {
 
   const ContentSpace({
     required this.brand,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

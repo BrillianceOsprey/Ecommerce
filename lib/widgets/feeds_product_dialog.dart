@@ -8,9 +8,9 @@ import 'package:provider/provider.dart';
 class FeedsProductDialog extends StatelessWidget {
   final Product product;
   const FeedsProductDialog({
-    Key? key,
+    super.key,
     required this.product,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

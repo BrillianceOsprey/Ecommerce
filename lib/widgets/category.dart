@@ -6,8 +6,8 @@ class Category extends StatefulWidget {
 
   const Category({
     required this.i,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<Category> createState() => _CategoryState();

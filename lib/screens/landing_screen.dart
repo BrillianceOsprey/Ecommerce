@@ -11,7 +11,7 @@ import 'package:ms_ecommerce_app/services/global_methods.dart';
 class LandingScreen extends StatefulWidget {
   static const routeName = '/landing-screen';
 
-  const LandingScreen({Key? key}) : super(key: key);
+  const LandingScreen({super.key});
 
   @override
   State<LandingScreen> createState() => _LandingScreenState();
@@ -34,6 +34,7 @@ class _LandingScreenState extends State<LandingScreen>
       await _auth.signInAnonymously().then(
           (value) => Navigator.canPop(context) ? Navigator.pop(context) : null);
     } catch (error) {
+      // ignore: use_build_context_synchronously
       _globalMethods.authDialog(context, error.toString());
     } finally {
       setState(() {
@@ -123,9 +124,9 @@ class _LandingScreenState extends State<LandingScreen>
           //     alignment: FractionalOffset(_animation.value, 0),
           //   ),
           // ),
-          Column(
+          const Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
+            children: [
               SizedBox(height: 50),
               Center(
                 child: Text(

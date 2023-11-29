@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../bottom_nav_screen.dart';
 
 class EmptyCart extends StatelessWidget {
-  const EmptyCart({Key? key}) : super(key: key);
+  const EmptyCart({super.key});
 
   @override
   Widget build(BuildContext context) {

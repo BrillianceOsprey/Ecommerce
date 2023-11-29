@@ -14,7 +14,7 @@ import '../../services/global_methods.dart';
 class UploadProductScreen extends StatefulWidget {
   static const routeName = '/upload-product-screen';
 
-  const UploadProductScreen({Key? key}) : super(key: key);
+  const UploadProductScreen({super.key});
 
   @override
   _UploadProductScreenState createState() => _UploadProductScreenState();
@@ -106,6 +106,7 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
         }
       }
     } catch (error) {
+      // ignore: use_build_context_synchronously
       _globalMethods.authDialog(context, error.toString());
     } finally {
       setState(() {

@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 
 class FullOrder extends StatefulWidget {
   const FullOrder({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<FullOrder> createState() => _FullOrderState();

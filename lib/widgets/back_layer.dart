@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ms_ecommerce_app/screens/inner_screens/upload_product_screen.dart';
 
 class BackLayer extends StatelessWidget {
-  const BackLayer({Key? key}) : super(key: key);
+  const BackLayer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +59,7 @@ class _roatedBox extends StatelessWidget {
   const _roatedBox({
     required this.top,
     required this.left,
-    Key? key,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -91,8 +90,7 @@ class _backLayerButton extends StatelessWidget {
     required this.title,
     required this.icon,
     required this.onPressed,
-    Key? key,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -13,7 +13,7 @@ import '../wishlist/wishlist_screen.dart';
 class ProductDetailsScreen extends StatefulWidget {
   static const routeName = '/product-details-screen';
   final String? productId;
-  const ProductDetailsScreen({Key? key, this.productId}) : super(key: key);
+  const ProductDetailsScreen({super.key, this.productId});
 
   @override
   ProductDetailsScreenState createState() => ProductDetailsScreenState();
@@ -195,9 +195,9 @@ class ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       Container(
                         color: Colors.black54,
                         width: double.infinity,
-                        child: Column(
+                        child: const Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
+                          children: [
                             SizedBox(height: 10),
                             Padding(
                               padding: EdgeInsets.all(8),
@@ -275,6 +275,7 @@ class ProductDetailsScreenState extends State<ProductDetailsScreen> {
 class ContentRow extends StatelessWidget {
   final String title;
   final String nameTitle;
+  // ignore: use_super_parameters
   const ContentRow({
     required this.title,
     required this.nameTitle,
@@ -313,12 +314,12 @@ class BottomSheet extends StatefulWidget {
   final WishlistProvider wishlistProvider;
 
   const BottomSheet({
-    Key? key,
+    super.key,
     required this.cartProvider,
     required this.product,
     required this.productId,
     required this.wishlistProvider,
-  }) : super(key: key);
+  });
 
   @override
   State<BottomSheet> createState() => _BottomSheetState();

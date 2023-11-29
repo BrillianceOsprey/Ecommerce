@@ -10,7 +10,7 @@ import '../../services/global_methods.dart';
 class LoginScreen extends StatefulWidget {
   static const routeName = '/Login-screen';
 
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -50,6 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
           .then((value) =>
               Navigator.canPop(context) ? Navigator.pop(context) : null);
     } catch (error) {
+      // ignore: use_build_context_synchronously
       _globalMethods.authDialog(context, error.toString());
     } finally {
       setState(() {

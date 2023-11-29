@@ -6,7 +6,7 @@ import '../../services/global_methods.dart';
 class ResetPasswordScreen extends StatefulWidget {
   static const routeName = '/ResetPassword-screen';
 
-  const ResetPasswordScreen({Key? key}) : super(key: key);
+  const ResetPasswordScreen({super.key});
 
   @override
   State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
@@ -34,6 +34,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       await _auth.sendPasswordResetEmail(email: _email).then(
           (value) => Navigator.canPop(context) ? Navigator.pop(context) : null);
     } catch (error) {
+      // ignore: use_build_context_synchronously
       _globalMethods.authDialog(context, error.toString());
     } finally {
       setState(() {

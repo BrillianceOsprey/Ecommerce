@@ -9,7 +9,7 @@ import '../../widgets/feeds_product.dart';
 class CategoriesFeedScreen extends StatelessWidget {
   static const routeName = '/Categories-feeds-screen';
 
-  const CategoriesFeedScreen({Key? key}) : super(key: key);
+  const CategoriesFeedScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ms_ecommerce_app/screens/bottom_nav_screen.dart';
 
 class EmptyWishlist extends StatelessWidget {
-  const EmptyWishlist({Key? key}) : super(key: key);
+  const EmptyWishlist({super.key});
 
   @override
   Widget build(BuildContext context) {

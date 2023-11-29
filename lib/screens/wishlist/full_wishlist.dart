@@ -6,9 +6,9 @@ import 'package:provider/provider.dart';
 class FullWishlist extends StatefulWidget {
   final String pId;
   const FullWishlist({
-    Key? key,
+    super.key,
     required this.pId,
-  }) : super(key: key);
+  });
 
   @override
   State<FullWishlist> createState() => _FullWishlistState();

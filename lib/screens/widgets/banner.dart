@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class CarouselSlide extends StatefulWidget {
-  const CarouselSlide({Key? key}) : super(key: key);
+  const CarouselSlide({super.key});
 
   @override
   State<CarouselSlide> createState() => _CarouselSlideState();

@@ -6,7 +6,7 @@ import 'package:ms_ecommerce_app/screens/inner_screens/product_details_screen.da
 import 'package:provider/provider.dart';
 
 class PopularProducts extends StatelessWidget {
-  const PopularProducts({Key? key}) : super(key: key);
+  const PopularProducts({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class PopularProducts extends StatelessWidget {
             Stack(
               children: [
                 SizedBox(
-                  height: 190,
+                  height: 175,
                   width: 250,
                   child: InkWell(
                     onTap: () {

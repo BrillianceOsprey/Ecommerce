@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 class SearchScreen extends StatefulWidget {
   static const routeName = '/Search-screen';
 
-  const SearchScreen({Key? key}) : super(key: key);
+  const SearchScreen({super.key});
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -69,10 +69,10 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       ),
       body: _controller.text.isNotEmpty && _searchList.isEmpty
-          ? Center(
+          ? const Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   SizedBox(height: 50),
                   Icon(Icons.search, size: 60),
                   SizedBox(height: 50),
